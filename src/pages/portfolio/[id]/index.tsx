@@ -127,8 +127,6 @@ export default function PortfolioPage() {
 
         const data: ApiInvestorData = await response.json();
 
-        console.log("Fetched Data:", data); // Debugging log
-
         // Handle malformed JSON structures
         if (!data || !Array.isArray(data.transactions)) {
           throw new Error("Received malformed data from the server.");

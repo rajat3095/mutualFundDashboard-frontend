@@ -78,7 +78,6 @@ export default function SchemeHoldingsTable({
     >();
 
     transactions.forEach((tx) => {
-      console.log("Processing Transaction:", tx); // Debugging log
       const key = `${tx.folioNumber}-${tx.schemeName}`;
 
       if (!holdingsMap.has(key)) {
@@ -140,10 +139,6 @@ export default function SchemeHoldingsTable({
     });
 
     return calculatedHoldings;
-  }, [transactions]);
-
-  useEffect(() => {
-    console.log("Transactions received:", transactions); // Debugging log
   }, [transactions]);
 
   // --- 2. Sorting & Filtering ---
