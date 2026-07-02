@@ -1,5 +1,5 @@
 // frontend/src/components/SchemeHoldingsTable.tsx
-import { useState, useMemo, useContext, useEffect } from "react";
+import { useState, useMemo, useContext } from "react";
 import {
   Table,
   TableBody,
