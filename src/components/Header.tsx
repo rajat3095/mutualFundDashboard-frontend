@@ -13,7 +13,7 @@ export default function Header() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: "background.default",
+        bgcolor: mode === "dark" ? "grey.900" : "#ffffff",
         color: "text.primary",
         borderBottom: 1,
         borderColor: "divider",
