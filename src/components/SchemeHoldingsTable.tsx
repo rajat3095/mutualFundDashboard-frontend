@@ -16,37 +16,10 @@ import {
   Stack,
 } from "@mui/material";
 import { ColorModeContext } from "@/context/ThemeContext";
-
-// Ensure this matches your API transaction structure
-export interface Transaction {
-  _id: string;
-  folioNumber: string;
-  schemeName: string;
-  date: string;
-  type: "PURCHASE" | "REDEMPTION";
-  amount: number;
-  units: number;
-  nav: number;
-  currentNav: number;
-}
-
-interface SchemeHolding {
-  id: string; // Unique key (schemeName + folioNumber)
-  schemeName: string;
-  folioNumber: string;
-  unitsHeld: number;
-  avgPurchaseNav: number;
-  currentNav: number;
-  investedAmount: number;
-  currentValue: number;
-  gainLoss: number;
-  returnPercent: number;
-  xirr: number;
-}
-
-interface SchemeHoldingsTableProps {
-  transactions: Transaction[];
-}
+import {
+  SchemeHoldingsTableProps,
+  SchemeHolding,
+} from "@/types/SchemeHoldingTableType";
 
 type Order = "asc" | "desc";
 type OrderBy = keyof SchemeHolding;

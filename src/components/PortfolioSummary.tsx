@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {
   Card,
   CardContent,
@@ -8,21 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import { ColorModeContext } from "@/context/ThemeContext";
-
-export interface InvestorSummaryData {
-  name: string;
-  totalInvestment: number;
-  currentMarketValue: number;
-  totalGainLoss: number;
-  absoluteReturn: number;
-  xirr: number;
-  schemeCount: number;
-  folioCount: number;
-}
-
-interface PortfolioSummaryProps {
-  data: InvestorSummaryData;
-}
+import { PortfolioSummaryProps } from "@/types/PortfolioSummaryType";
 
 export default function PortfolioSummary({ data }: PortfolioSummaryProps) {
   const { mode } = useContext(ColorModeContext);

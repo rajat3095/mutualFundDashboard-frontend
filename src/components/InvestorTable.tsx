@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchInvestors } from "../store/investorSlice";
 import { AppDispatch, RootState } from "../store";
 import { useRouter } from "next/navigation";
+import { Investor } from "@/types/InvestorType";
 import {
   Table,
   TableBody,
@@ -20,17 +21,6 @@ import {
   Stack,
 } from "@mui/material";
 import { ColorModeContext } from "@/context/ThemeContext";
-
-interface Investor {
-  id: string | number;
-  name: string;
-  panNumber: string;
-  folioCount: number;
-  totalInvestment: number;
-  currentValue: number;
-  absoluteReturn: number;
-  xirr: number;
-}
 
 type Order = "asc" | "desc";
 type OrderBy = "currentValue" | "xirr" | "";
