@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   Box,
@@ -16,12 +16,9 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloseIcon from "@mui/icons-material/Close";
-
-import PortfolioSummary, {
-  InvestorSummaryData,
-} from "@/components/PortfolioSummary";
-import SchemeHoldingsTable from "@/components/SchemeHoldingsTable";
-import PortfolioAnalytics from "@/components/charts/PortfolioAnalytics";
+import PortfolioSummary from "@/components/InvestorPortfolio/PortfolioSummary";
+import PortfolioSchemeWiseHoldings from "@/components/InvestorPortfolio/PortfolioSchemeWiseHoldings";
+import PortfolioAnalytics from "@/components/InvestorPortfolio/PortfolioAnalytics";
 
 interface Transaction {
   _id: string;
@@ -35,11 +32,22 @@ interface Transaction {
   currentNav: number;
 }
 
+interface TransactionMetrics {
+  xirr: number;
+  folioCount: number;
+  schemeCount: number;
+  totalInvestment: number;
+  currentMarketValue: number;
+  totalGainLoss: number;
+  absoluteReturn: number;
+}
+
 interface ApiInvestorData {
   _id: string;
   name: string;
   panNumber: string;
   transactions: Transaction[];
+  transactionMetrics: TransactionMetrics;
 }
 
 export default function PortfolioPage() {
@@ -153,50 +161,6 @@ export default function PortfolioPage() {
     fetchInvestorSummary();
   }, [investorId]);
 
-  // --- 3. Summary Aggregation ---
-  const summaryData: InvestorSummaryData | null = useMemo(() => {
-    if (!apiData || !apiData.transactions.length) return null;
-
-    let totalInvestment = 0;
-    let currentUnits = 0;
-    let latestNav = 0;
-    const uniqueFolios = new Set<string>();
-    const uniqueSchemes = new Set<string>();
-
-    apiData.transactions.forEach((tx) => {
-      uniqueFolios.add(tx.folioNumber);
-      uniqueSchemes.add(tx.schemeName);
-      latestNav = tx.currentNav;
-
-      if (tx.type === "PURCHASE") {
-        totalInvestment += tx.amount;
-        currentUnits += tx.units;
-      } else if (tx.type === "REDEMPTION") {
-        currentUnits -= tx.units;
-      }
-    });
-
-    // Prevent negative overall portfolio units due to bad redemption data
-    if (currentUnits < 0) currentUnits = 0;
-
-    const currentMarketValue = currentUnits * latestNav;
-    const totalGainLoss = currentMarketValue - totalInvestment;
-    const absoluteReturn =
-      totalInvestment > 0 ? (totalGainLoss / totalInvestment) * 100 : 0;
-    const estimatedXirr = absoluteReturn / 1.5;
-
-    return {
-      name: apiData.name,
-      totalInvestment,
-      currentMarketValue,
-      totalGainLoss,
-      absoluteReturn,
-      xirr: estimatedXirr,
-      schemeCount: uniqueSchemes.size,
-      folioCount: uniqueFolios.size,
-    };
-  }, [apiData]);
-
   // --- Render States ---
   if (loading) {
     return (
@@ -277,13 +241,18 @@ export default function PortfolioPage() {
       </Collapse>
 
       {/* Main Content (Only renders valid data) */}
-      {summaryData ? (
+      {apiData ? (
         <>
           <Box sx={{ mb: 4 }}>
-            <PortfolioSummary data={summaryData} />
+            <PortfolioSummary
+              data={{
+                ...apiData.transactionMetrics,
+                name: apiData.name,
+              }}
+            />
           </Box>
-          <PortfolioAnalytics transactions={apiData.transactions} />
-          <SchemeHoldingsTable transactions={apiData.transactions} />
+          <PortfolioAnalytics />
+          <PortfolioSchemeWiseHoldings />
         </>
       ) : (
         <Alert severity="info">

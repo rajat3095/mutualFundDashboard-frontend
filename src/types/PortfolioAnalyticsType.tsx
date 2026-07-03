@@ -10,6 +10,16 @@ export interface Transaction {
   currentNav: number; // Added to interface based on new schema
 }
 
+export interface schemeData {
+  currentValue: number;
+  returnPercent: number;
+  schemeName: string;
+  investedAmount: number;
+  unitsHeld: number;
+  latestNav: number;
+  xirr: number;
+}
+
 export interface PortfolioAnalyticsProps {
   transactions: Transaction[];
 }

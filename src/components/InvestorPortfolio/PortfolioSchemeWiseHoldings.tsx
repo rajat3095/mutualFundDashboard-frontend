@@ -1,5 +1,5 @@
-// frontend/src/components/SchemeHoldingsTable.tsx
-import { useState, useMemo, useContext } from "react";
+// frontend/src/components/PortfolioSchemeWiseHoldings.tsx
+import { useState, useMemo, useContext, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -16,103 +16,45 @@ import {
   Stack,
 } from "@mui/material";
 import { ColorModeContext } from "@/context/ThemeContext";
-import {
-  SchemeHoldingsTableProps,
-  SchemeHolding,
-} from "@/types/SchemeHoldingTableType";
+import { SchemeHolding } from "@/types/PortfolioSchemeWiseHoldingsType";
+import { useParams } from "next/navigation";
 
 type Order = "asc" | "desc";
 type OrderBy = keyof SchemeHolding;
 
-export default function SchemeHoldingsTable({
-  transactions,
-}: SchemeHoldingsTableProps) {
+export default function SchemeHoldingsTable() {
   const { mode } = useContext(ColorModeContext); // Access the current theme mode
   const [searchQuery, setSearchQuery] = useState("");
   const [order, setOrder] = useState<Order>("desc");
   const [orderBy, setOrderBy] = useState<OrderBy>("currentValue");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [holdingsData, setHoldingsData] = useState<SchemeHolding[]>([]);
+  const params = useParams();
+  const investorId = params?.id as string;
 
-  // --- 1. Aggregation Logic ---
-  // Groups transactions by Scheme + Folio to calculate current holdings
-  const holdingsData: SchemeHolding[] = useMemo(() => {
-    const holdingsMap = new Map<
-      string,
-      {
-        id: string;
-        schemeName: string;
-        folioNumber: string;
-        totalUnitsPurchased: number;
-        totalPurchaseCost: number;
-        unitsHeld: number;
-        latestNav: number;
+  useEffect(() => {
+    // Fetch holdings data from the API and set it to state
+    const fetchHoldingsData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/investors/${investorId}/schemeSummary`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+        );
+        const data = await response.json();
+        setHoldingsData(data);
+      } catch (error) {
+        console.error("Error fetching holdings data:", error);
       }
-    >();
+    };
 
-    transactions.forEach((tx) => {
-      const key = `${tx.folioNumber}-${tx.schemeName}`;
-
-      if (!holdingsMap.has(key)) {
-        holdingsMap.set(key, {
-          id: key,
-          schemeName: tx.schemeName,
-          folioNumber: tx.folioNumber,
-          totalUnitsPurchased: 0,
-          totalPurchaseCost: 0,
-          unitsHeld: 0,
-          latestNav: 0,
-        });
-      }
-
-      const holding = holdingsMap.get(key);
-      if (!holding) return;
-
-      holding.latestNav = tx.currentNav; // Assuming chronologically ordered, last NAV is current
-
-      if (tx.type === "PURCHASE") {
-        holding.totalUnitsPurchased += tx.units;
-        holding.totalPurchaseCost += tx.amount;
-        holding.unitsHeld += tx.units;
-      } else if (tx.type === "REDEMPTION") {
-        holding.unitsHeld -= tx.units;
-      }
-    });
-
-    const calculatedHoldings: SchemeHolding[] = [];
-
-    holdingsMap.forEach((holding) => {
-      // Ignore schemes that have been fully redeemed
-      if (holding.unitsHeld <= 0.01) return;
-
-      const avgPurchaseNav =
-        holding.totalPurchaseCost / holding.totalUnitsPurchased || 0;
-      const investedAmount = holding.unitsHeld * avgPurchaseNav;
-      const currentValue = holding.unitsHeld * holding.latestNav;
-      const gainLoss = currentValue - investedAmount;
-      const returnPercent =
-        investedAmount > 0 ? (gainLoss / investedAmount) * 100 : 0;
-
-      // Mock XIRR calculation (Requires a library like 'xirr' for true calculation)
-      const xirr = returnPercent / 1.5;
-
-      calculatedHoldings.push({
-        id: holding.id,
-        schemeName: holding.schemeName,
-        folioNumber: holding.folioNumber,
-        unitsHeld: holding.unitsHeld,
-        avgPurchaseNav,
-        currentNav: holding.latestNav,
-        investedAmount,
-        currentValue,
-        gainLoss,
-        returnPercent,
-        xirr,
-      });
-    });
-
-    return calculatedHoldings;
-  }, [transactions]);
+    fetchHoldingsData();
+  }, [investorId]);
 
   // --- 2. Sorting & Filtering ---
   const handleRequestSort = (property: OrderBy) => {

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../store";
 import { CustomThemeProvider } from "../context/ThemeContext";
 import { Box } from "@mui/material";
-import Header from "@/components/Header";
+import Header from "@/components/common/Header";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

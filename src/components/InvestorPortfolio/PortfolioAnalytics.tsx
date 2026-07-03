@@ -1,7 +1,7 @@
 // frontend/src/components/PortfolioAnalytics.tsx
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
-import { PortfolioAnalyticsProps } from "@/types/PortfolioAnalyticsType";
+import { schemeData } from "@/types/PortfolioAnalyticsType";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +13,7 @@ import {
   ArcElement,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
+import { useParams } from "next/navigation";
 
 // Register Chart.js modules
 ChartJS.register(
@@ -25,62 +26,87 @@ ChartJS.register(
   ArcElement,
 );
 
-export default function PortfolioAnalytics({
-  transactions,
-}: PortfolioAnalyticsProps) {
+export default function PortfolioAnalytics() {
+  const [schemeData, setSchemeData] = useState<schemeData[]>([]);
+  const params = useParams();
+  const investorId = params?.id as string;
+
   // --- 1. Aggregation Logic ---
-  const schemeData = useMemo(() => {
-    const map = new Map<
-      string,
-      {
-        schemeName: string;
-        totalInvested: number;
-        unitsHeld: number;
-        latestNav: number;
+  // const schemeData = useMemo(() => {
+  //   const map = new Map<
+  //     string,
+  //     {
+  //       schemeName: string;
+  //       totalInvested: number;
+  //       unitsHeld: number;
+  //       latestNav: number;
+  //     }
+  //   >();
+
+  //   transactions.forEach((tx) => {
+  //     if (!map.has(tx.schemeName)) {
+  //       map.set(tx.schemeName, {
+  //         schemeName: tx.schemeName,
+  //         totalInvested: 0,
+  //         unitsHeld: 0,
+  //         latestNav: tx.currentNav || tx.nav, // Initialize with currentNav
+  //       });
+  //     }
+  //     const item = map.get(tx.schemeName);
+  //     if (!item) return;
+
+  //     // Explicitly set to currentNav so it doesn't rely on chronological sorting of historic navs
+  //     item.latestNav = tx.currentNav || item.latestNav;
+
+  //     if (tx.type === "PURCHASE") {
+  //       item.totalInvested += tx.amount;
+  //       item.unitsHeld += tx.units;
+  //     } else if (tx.type === "REDEMPTION") {
+  //       item.unitsHeld -= tx.units;
+  //       // Depending on your accounting method (FIFO/Average), you may also want to reduce totalInvested here.
+  //     }
+  //   });
+
+  //   return Array.from(map.values())
+  //     .filter((item) => item.unitsHeld > 0.01) // Ignore empty holdings
+  //     .map((item) => {
+  //       const currentValue = item.unitsHeld * item.latestNav;
+  //       const returnPercent =
+  //         item.totalInvested > 0
+  //           ? ((currentValue - item.totalInvested) / item.totalInvested) * 100
+  //           : 0;
+
+  //       return {
+  //         ...item,
+  //         currentValue,
+  //         returnPercent,
+  //       };
+  //     })
+  //     .sort((a, b) => b.currentValue - a.currentValue); // Sort by highest value
+  // }, [transactions]);
+
+  useEffect(() => {
+    // Fetch holdings data from the API and set it to state
+    const fetchHoldingsData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/investors/${investorId}/schemeSummary`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+        );
+        const data = await response.json();
+        setSchemeData(data);
+      } catch (error) {
+        console.error("Error fetching holdings data:", error);
       }
-    >();
+    };
 
-    transactions.forEach((tx) => {
-      if (!map.has(tx.schemeName)) {
-        map.set(tx.schemeName, {
-          schemeName: tx.schemeName,
-          totalInvested: 0,
-          unitsHeld: 0,
-          latestNav: tx.currentNav || tx.nav, // Initialize with currentNav
-        });
-      }
-      const item = map.get(tx.schemeName);
-      if (!item) return;
-
-      // Explicitly set to currentNav so it doesn't rely on chronological sorting of historic navs
-      item.latestNav = tx.currentNav || item.latestNav;
-
-      if (tx.type === "PURCHASE") {
-        item.totalInvested += tx.amount;
-        item.unitsHeld += tx.units;
-      } else if (tx.type === "REDEMPTION") {
-        item.unitsHeld -= tx.units;
-        // Depending on your accounting method (FIFO/Average), you may also want to reduce totalInvested here.
-      }
-    });
-
-    return Array.from(map.values())
-      .filter((item) => item.unitsHeld > 0.01) // Ignore empty holdings
-      .map((item) => {
-        const currentValue = item.unitsHeld * item.latestNav;
-        const returnPercent =
-          item.totalInvested > 0
-            ? ((currentValue - item.totalInvested) / item.totalInvested) * 100
-            : 0;
-
-        return {
-          ...item,
-          currentValue,
-          returnPercent,
-        };
-      })
-      .sort((a, b) => b.currentValue - a.currentValue); // Sort by highest value
-  }, [transactions]);
+    fetchHoldingsData();
+  }, [investorId]);
 
   // --- 2. Chart Configurations ---
 
@@ -96,11 +122,11 @@ export default function PortfolioAnalytics({
 
   // A. Investment vs Current Value (Grouped Bar Chart)
   const investVsCurrentData = {
-    labels: schemeData.map((d) => d.schemeName.substring(0, 15) + "..."),
+    labels: schemeData.map((d) => d.schemeName),
     datasets: [
       {
         label: "Invested Amount",
-        data: schemeData.map((d) => d.totalInvested),
+        data: schemeData.map((d) => d.investedAmount),
         backgroundColor: "rgba(156, 163, 175, 0.6)", // Gray
       },
       {
@@ -113,15 +139,22 @@ export default function PortfolioAnalytics({
 
   // B. Scheme-wise Return Distribution (Bar Chart)
   const returnDistributionData = {
-    labels: schemeData.map((d) => d.schemeName.substring(0, 15) + "..."),
+    labels: schemeData.map((d) => d.schemeName),
     datasets: [
       {
         label: "Absolute Return (%)",
         data: schemeData.map((d) => d.returnPercent),
         backgroundColor: schemeData.map((d) =>
           d.returnPercent >= 0
-            ? "rgba(16, 185, 129, 0.8)"
+            ? "rgba(114, 185, 16, 0.8)"
             : "rgba(239, 68, 68, 0.8)",
+        ),
+      },
+      {
+        label: "XIRR Return (%)",
+        data: schemeData.map((d) => d.xirr),
+        backgroundColor: schemeData.map((d) =>
+          d.xirr >= 0 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)",
         ),
       },
     ],
@@ -191,7 +224,7 @@ export default function PortfolioAnalytics({
   if (!schemeData.length) return null;
 
   return (
-    <Box sx={{ mt: 4 }}>
+    <Box>
       <Typography variant="h5" sx={{ fontWeight: "bold" }} gutterBottom>
         Portfolio Analytics
       </Typography>

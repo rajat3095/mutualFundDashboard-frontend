@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { ColorModeContext } from "../context/ThemeContext";
+import { ColorModeContext } from "../../context/ThemeContext";
 
 export default function Header() {
   const { toggleColorMode, mode } = useContext(ColorModeContext);

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Container, Typography } from "@mui/material";
 
-import InvestorTable from "../components/InvestorTable";
+import InvestorTableDashboard from "../components/InvestorTableDashboard";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         Registered Investors
       </Typography>
 
-      <InvestorTable />
+      <InvestorTableDashboard />
     </Container>
   );
 }
