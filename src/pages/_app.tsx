@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { store } from "../store";
+import store from "../store";
 import { CustomThemeProvider } from "../context/ThemeContext";
 import { Box } from "@mui/material";
 import Header from "@/components/common/Header";

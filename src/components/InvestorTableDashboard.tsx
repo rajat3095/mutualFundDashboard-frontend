@@ -1,7 +1,13 @@
 import { useEffect, useState, useMemo, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchInvestors } from "../store/investorSlice";
-import { AppDispatch, RootState } from "../store";
+// import { fetchInvestors } from "../store/investorSlice";
+import {
+  selectInvestorDashboard,
+  selectInvestorDashboardStatus,
+  selectInvestorDashboardError,
+} from "../store/feature/InvestorDashboard/InvestorDashboardSelector";
+import { investorDashboardSliceActions } from "../store/feature/InvestorDashboard/InvestorDashboardReducer";
+import { AppDispatch } from "../store";
 import { useRouter } from "next/navigation";
 import { Investor } from "@/types/InvestorType";
 import {
@@ -29,10 +35,9 @@ export default function InvestorTable() {
   const { mode } = useContext(ColorModeContext);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const { list, status, error } = useSelector(
-    (state: RootState) => state.investors,
-  );
-
+  const getInvestorList = useSelector(selectInvestorDashboard);
+  const getStatus = useSelector(selectInvestorDashboardStatus);
+  const error = useSelector(selectInvestorDashboardError);
   // --- Feature State ---
   const [searchQuery, setSearchQuery] = useState("");
   const [order, setOrder] = useState<Order>("desc");
@@ -41,8 +46,10 @@ export default function InvestorTable() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
-    if (status === "idle") dispatch(fetchInvestors());
-  }, [status, dispatch]);
+    if (getStatus === "idle") {
+      dispatch(investorDashboardSliceActions.getInvestorListAction());
+    }
+  });
 
   // --- Sorting Handler ---
   const handleRequestSort = (property: OrderBy) => {
@@ -72,7 +79,7 @@ export default function InvestorTable() {
   // --- Derived Data: Filter, Sort, and Paginate ---
   const processedData = useMemo(() => {
     // 1. Search Filter (searches both Name and PAN Number)
-    let filteredList = list.filter((investor: Investor) => {
+    let filteredList = getInvestorList.filter((investor: Investor) => {
       const query = searchQuery.toLowerCase();
       return (
         investor.name.toLowerCase().includes(query) ||
@@ -92,7 +99,7 @@ export default function InvestorTable() {
     }
 
     return filteredList;
-  }, [list, searchQuery, order, orderBy]);
+  }, [getInvestorList, searchQuery, order, orderBy]);
 
   // 3. Pagination Slice
   const paginatedData = processedData.slice(
@@ -100,7 +107,7 @@ export default function InvestorTable() {
     page * rowsPerPage + rowsPerPage,
   );
 
-  if (status === "loading") {
+  if (getStatus === "loading") {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", p: 4 }}>
         <CircularProgress />

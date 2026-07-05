@@ -1,7 +1,5 @@
 // frontend/src/components/PortfolioAnalytics.tsx
-import { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Grid, Box } from "@mui/material";
-import { schemeData } from "@/types/PortfolioAnalyticsType";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,7 +11,8 @@ import {
   ArcElement,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
-import { useParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import { selectInvestorPortfolio } from "@/store/feature/InvestorPortfolio/InvestorPortfolioSelector";
 
 // Register Chart.js modules
 ChartJS.register(
@@ -27,9 +26,7 @@ ChartJS.register(
 );
 
 export default function PortfolioAnalytics() {
-  const [schemeData, setSchemeData] = useState<schemeData[]>([]);
-  const params = useParams();
-  const investorId = params?.id as string;
+  const schemeData = useSelector(selectInvestorPortfolio);
 
   // --- 1. Aggregation Logic ---
   // const schemeData = useMemo(() => {
@@ -84,29 +81,6 @@ export default function PortfolioAnalytics() {
   //     })
   //     .sort((a, b) => b.currentValue - a.currentValue); // Sort by highest value
   // }, [transactions]);
-
-  useEffect(() => {
-    // Fetch holdings data from the API and set it to state
-    const fetchHoldingsData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/investors/${investorId}/schemeSummary`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        const data = await response.json();
-        setSchemeData(data);
-      } catch (error) {
-        console.error("Error fetching holdings data:", error);
-      }
-    };
-
-    fetchHoldingsData();
-  }, [investorId]);
 
   // --- 2. Chart Configurations ---
 

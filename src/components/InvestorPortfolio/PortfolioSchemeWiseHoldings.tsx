@@ -18,6 +18,13 @@ import {
 import { ColorModeContext } from "@/context/ThemeContext";
 import { SchemeHolding } from "@/types/PortfolioSchemeWiseHoldingsType";
 import { useParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { investorPortfolioSliceActions } from "@/store/feature/InvestorPortfolio/InvestorPortfolioReducer";
+import {
+  selectInvestorPortfolio,
+  // selectInvestorPortfolioStatus,
+  // selectInvestorPortfolioError,
+} from "@/store/feature/InvestorPortfolio/InvestorPortfolioSelector";
 
 type Order = "asc" | "desc";
 type OrderBy = keyof SchemeHolding;
@@ -29,32 +36,20 @@ export default function SchemeHoldingsTable() {
   const [orderBy, setOrderBy] = useState<OrderBy>("currentValue");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [holdingsData, setHoldingsData] = useState<SchemeHolding[]>([]);
+  // const [holdingsData, setHoldingsData] = useState<SchemeHolding[]>([]);
   const params = useParams();
   const investorId = params?.id as string;
+  const dispatch = useDispatch();
+  const holdingsData = useSelector(selectInvestorPortfolio);
+  // const getStatus = useSelector(selectInvestorPortfolioStatus);
+  // const error = useSelector(selectInvestorPortfolioError);
 
   useEffect(() => {
     // Fetch holdings data from the API and set it to state
-    const fetchHoldingsData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/investors/${investorId}/schemeSummary`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        const data = await response.json();
-        setHoldingsData(data);
-      } catch (error) {
-        console.error("Error fetching holdings data:", error);
-      }
-    };
-
-    fetchHoldingsData();
-  }, [investorId]);
+    dispatch(
+      investorPortfolioSliceActions.getInvestorPortfolioListAction(investorId),
+    );
+  }, [investorId, dispatch]);
 
   // --- 2. Sorting & Filtering ---
   const handleRequestSort = (property: OrderBy) => {
@@ -248,7 +243,7 @@ export default function SchemeHoldingsTable() {
             <TableBody>
               {paginatedData.length > 0 ? (
                 paginatedData.map((row) => (
-                  <TableRow key={row.id} hover>
+                  <TableRow key={row.schemeName} hover>
                     <TableCell sx={{ fontWeight: "medium" }}>
                       {row.schemeName}
                     </TableCell>
