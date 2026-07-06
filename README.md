@@ -4,78 +4,97 @@ It is a mutual fund dashboard where the investor return is visible. Portfolio su
 
 # 📊 Mutual Fund Portfolio Dashboard - Frontend
 
-A modern, responsive Mutual Fund Portfolio Dashboard built with **React**, **TypeScript**, **Material UI**, and **Redux Toolkit**. The application helps investors visualize their mutual fund portfolio, track investment performance, analyze gains/losses, and monitor portfolio allocation through an intuitive dashboard.
+A modern Mutual Fund Portfolio Dashboard built with **Next.js**, **React**, **TypeScript**, **Material UI**, and **Redux Toolkit**.
 
-> This project is the frontend application that communicates with the Mutual Fund Dashboard backend API.
+The application enables users to view investor portfolios, analyze mutual fund holdings, monitor portfolio performance, and visualize investment insights through interactive charts and analytics.
 
 ---
 
 ## ✨ Features
 
-- 📈 Portfolio Overview
-- 💰 Investment Summary
-- 📊 Current Portfolio Value
-- 🥧 Asset Allocation Charts
-- 📋 Investor Portfolio Details
-- 🔍 Search & Filter Investors
-- 📱 Fully Responsive UI
-- 🌙 Light/Dark Theme Support
-- ⚡ Fast Development using Nextjs
-- 🔄 API Integration with Backend
-- 📦 Modular Component Architecture
+- 📋 Investor Dashboard
+- 📈 Portfolio Summary
+- 📊 Portfolio Analytics
+- 💼 Scheme-wise Holdings
+- 📉 Gain/Loss Analysis
+- 📊 Interactive Charts (Chart.js)
+- 🔍 Investor Selection
+- ⚡ REST API Integration
+- 🌙 Light & Dark Theme Support
+- 📱 Responsive Material UI Design
+- 🔄 Redux Toolkit State Management
 
 ---
 
 ## 🛠 Tech Stack
 
-### Frontend
+| Category          | Technology                 |
+| ----------------- | -------------------------- |
+| Framework         | Next.js 16                 |
+| Language          | TypeScript                 |
+| UI Library        | React 19                   |
+| Component Library | Material UI (MUI)          |
+| State Management  | Redux Toolkit              |
+| HTTP Client       | Axios                      |
+| Charts            | Chart.js + react-chartjs-2 |
+| Styling           | CSS + MUI                  |
+| Linting           | ESLint                     |
 
-- React
-- TypeScript
-- Nextjs
-- Material UI (MUI)
-- Redux Toolkit
+---
 
-### Development
+# 📁 Project Structure
 
-- ESLint
+```
+src
+├── components
+│   ├── common
+│   │   └── Header.tsx
+│   │
+│   ├── InvestorPortfolio
+│   │   ├── PortfolioAnalytics.tsx
+│   │   ├── PortfolioSchemeWiseHoldings.tsx
+│   │   └── PortfolioSummary.tsx
+│   │
+│   └── InvestorTableDashboard.tsx
+│
+├── context
+│   └── ThemeContext.tsx
+│
+├── pages
+│   ├── index.tsx
+│   ├── portfolio
+│   │   └── [id]
+│   │       └── index.tsx
+│   ├── _app.tsx
+│   └── _document.tsx
+│
+├── services
+│   ├── InvestorDashboard
+│   └── InvestorPortfolio
+│
+├── store
+│   ├── feature
+│   │   ├── InvestorDashboard
+│   │   └── InvestorPortfolio
+│   └── index.tsx
+│
+├── styles
+├── types
+└── utils
+```
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+- Node.js **24+**
 - npm
 
 ---
 
-## 📁 Project Structure
-
-```
-src/
-│
-├── components/
-│   ├── Charts/PortfolioAnalytics
-|   ├── Header
-│   ├── InvestorTable
-│   ├── PortfolioSummary
-│   └── SchemeHoldingsTable
-│
-├── context/ThemeContext
-├── pages/
-├── store/
-│   ├── index.ts
-│   └── investorSlice.ts
-│
-├── styles/
-```
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (24+ recommended)
-- npm
-
----
-
-### Clone Repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/rajat3095/mutualFundDashboard-frontend.git
@@ -85,7 +104,7 @@ cd mutualFundDashboard-frontend
 
 ---
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 npm install
@@ -93,27 +112,27 @@ npm install
 
 ---
 
-### Environment Variables
+## Environment Variables
 
-Create a `.env` file in the project root.
+Create a `.env.local` file in the project root.
 
 Example:
 
 ```env
-VITE_API_BASE_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
 ```
 
-Adjust the API URL according to your backend server.
+Update the URL according to your backend server.
 
 ---
 
-### Run Development Server
+## Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Application will start at
+Open
 
 ```
 http://localhost:3000
@@ -121,66 +140,79 @@ http://localhost:3000
 
 ---
 
-## 🏗 Build for Production
+## Production Build
 
 ```bash
 npm run build
 ```
 
----
-
-## 🔍 Preview Production Build
+Run production server
 
 ```bash
-npm run preview
+npm start
 ```
 
 ---
 
-## 📦 Available Scripts
+# 📦 Available Scripts
 
-| Command         | Description                  |
-| --------------- | ---------------------------- |
-| npm run dev     | Start development server     |
-| npm run build   | Build production application |
-| npm run preview | Preview production build     |
-| npm run lint    | Run ESLint                   |
+| Command       | Description              |
+| ------------- | ------------------------ |
+| npm run dev   | Start development server |
+| npm run build | Create production build  |
+| npm start     | Run production server    |
+| npm run lint  | Run ESLint               |
 
 ---
 
-## 📸 Screenshots
-
-### Dashboard
-
-![alt text](image-1.png)
-
-> Add dashboard screenshot here
+# 🏗 Architecture
 
 ```
-docs/dashboard.png
+Next.js Pages Router
+        │
+        ▼
+React Components
+        │
+        ▼
+Redux Toolkit
+        │
+        ▼
+Axios Services
+        │
+        ▼
+Backend REST API
 ```
 
-### Portfolio Summary
+---
+
+# 📊 Application Flow
+
+```
+Dashboard
+      │
+      ▼
+Investor List
+      │
+      ▼
+Portfolio Details
+      │
+      ├── Portfolio Summary
+      ├── Portfolio Analytics
+      └── Scheme-wise Holdings
+```
+
+---
+
+# 📸 Screenshots
 
 ![alt text](image.png)
-
-> Add portfolio screenshot here
-
-```
-docs/portfolio-summary.png
-```
-
-### Investor Details
-
-> Add investor details screenshot here
-
-```
-docs/investor-details.png
-```
+![alt text](image-1.png)
 
 ---
 
-## 🔗 Backend Repository
+# 🔌 Backend Repository
+
+The frontend consumes data from the backend REST API.
 
 Backend Repository:
 
@@ -188,62 +220,25 @@ https://github.com/rajat3095/mutualFundDashboard-backend
 
 ---
 
-## 🎯 Future Improvements
-
-- Authentication & Authorization
-- Live NAV Integration
-- Portfolio Comparison
-- PDF Report Generation
-- CSV/Excel Export
-- Advanced Charts
-- Notifications
-- Mobile Optimization
-- Unit Testing
-- Docker Support
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create your feature branch
-
-```bash
-git checkout -b feature/new-feature
-```
-
-3. Commit your changes
-
-```bash
-git commit -m "Add new feature"
-```
-
-4. Push to the branch
-
-```bash
-git push origin feature/new-feature
-```
-
-5. Open a Pull Request
-
----
-
-## 📄 License
+# 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Rajat Gandhi**
 
-GitHub: https://github.com/rajat3095
+- GitHub: https://github.com/rajat3095
+- Repository: https://github.com/rajat3095/mutualFundDashboard-frontend
 
 ---
 
-## ⭐ Support
+# ⭐ Show Your Support
 
-If you found this project useful, consider giving it a ⭐ on GitHub!
+If you found this project helpful, please consider giving it a **⭐ Star** on GitHub.
+
+It helps others discover the project and motivates future improvements.
+
+---
