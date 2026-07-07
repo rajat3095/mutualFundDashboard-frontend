@@ -55,7 +55,8 @@ src
 │   │   ├── PortfolioSchemeWiseHoldings.tsx
 │   │   └── PortfolioSummary.tsx
 │   │
-│   └── InvestorTableDashboard.tsx
+│   ├── InvestorTableDashboard.tsx
+│   └── JsonUploader.tsx
 │
 ├── context
 │   └── ThemeContext.tsx
@@ -139,6 +140,10 @@ http://localhost:3000
 ```
 
 ---
+
+## Data
+
+You can see the data folder in the project in which data.json file is present. You can use that file and can upload ot from the UI so that the data is store in the database and you can go through the application.
 
 ## Production Build
 

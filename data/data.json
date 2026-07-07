@@ -1,0 +1,647 @@
+[
+  {
+    "name": "Neha Kapoor",
+    "panNumber": "ZBCDE1234F",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0001",
+        "folioNumber": "FOLIO-9001",
+        "schemeName": "SBI Bluechip Fund",
+        "date": "2022-04-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 75000,
+        "nav": 55.4,
+        "units": 1353.79,
+        "currentNav": 71.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0002",
+        "folioNumber": "FOLIO-9001",
+        "schemeName": "SBI Bluechip Fund",
+        "date": "2023-11-22T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 25000,
+        "nav": 62.8,
+        "units": 398.08,
+        "currentNav": 71.5
+      }
+    ]
+  },
+  {
+    "name": "Vikram Singh",
+    "panNumber": "XVCDE9876G",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0003",
+        "folioNumber": "FOLIO-9002",
+        "schemeName": "Axis Long Term Equity Fund",
+        "date": "2021-01-15T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 150000,
+        "nav": 45.2,
+        "units": 3318.58,
+        "currentNav": 52.1
+      }
+    ]
+  },
+  {
+    "name": "Pooja Sharma",
+    "panNumber": "CVCDE5432H",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0004",
+        "folioNumber": "FOLIO-9003",
+        "schemeName": "HDFC Mid-Cap Opportunities Fund",
+        "date": "2020-08-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 200000,
+        "nav": 70.5,
+        "units": 2836.87,
+        "currentNav": 128.4
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0005",
+        "folioNumber": "FOLIO-9003",
+        "schemeName": "HDFC Mid-Cap Opportunities Fund",
+        "date": "2022-09-12T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 100000,
+        "nav": 95.1,
+        "units": 1051.52,
+        "currentNav": 128.4
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0006",
+        "folioNumber": "FOLIO-9003",
+        "schemeName": "HDFC Mid-Cap Opportunities Fund",
+        "date": "2024-02-28T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 50000,
+        "nav": 115.3,
+        "units": 433.65,
+        "currentNav": 128.4
+      }
+    ]
+  },
+  {
+    "name": "Rahul Verma",
+    "panNumber": "VVCDE1111J",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0007",
+        "folioNumber": "FOLIO-9004",
+        "schemeName": "ICICI Prudential Value Discovery Fund",
+        "date": "2023-05-18T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 500000,
+        "nav": 210.4,
+        "units": 2376.42,
+        "currentNav": 245.8
+      }
+    ]
+  },
+  {
+    "name": "Sneha Desai",
+    "panNumber": "NVCDE2222K",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0008",
+        "folioNumber": "FOLIO-9005",
+        "schemeName": "Kotak Standard Multicap Fund",
+        "date": "2022-02-14T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 300000,
+        "nav": 48.9,
+        "units": 6134.96,
+        "currentNav": 64.3
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0009",
+        "folioNumber": "FOLIO-9005",
+        "schemeName": "Kotak Standard Multicap Fund",
+        "date": "2023-12-10T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 150000,
+        "nav": 56.2,
+        "units": 2669.03,
+        "currentNav": 64.3
+      }
+    ]
+  },
+  {
+    "name": "Amit Patel",
+    "panNumber": "MVCDE3333L",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000a",
+        "folioNumber": "FOLIO-9006",
+        "schemeName": "Nippon India Small Cap Fund",
+        "date": "2021-07-22T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 120000,
+        "nav": 85.6,
+        "units": 1401.86,
+        "currentNav": 145.7
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000b",
+        "folioNumber": "FOLIO-9006",
+        "schemeName": "Nippon India Small Cap Fund",
+        "date": "2024-01-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 80000,
+        "nav": 130.2,
+        "units": 614.43,
+        "currentNav": 145.7
+      }
+    ]
+  },
+  {
+    "name": "Ravi Shastri",
+    "panNumber": "LVCDE4444M",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000c",
+        "folioNumber": "FOLIO-9007",
+        "schemeName": "UTI Nifty Index Fund",
+        "date": "2020-01-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 1000000,
+        "nav": 88.5,
+        "units": 11299.43,
+        "currentNav": 120.2
+      }
+    ]
+  },
+  {
+    "name": "Riya Sen",
+    "panNumber": "KVCDE5555N",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000d",
+        "folioNumber": "FOLIO-9008",
+        "schemeName": "Mirae Asset Emerging Bluechip Fund",
+        "date": "2019-11-11T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 250000,
+        "nav": 65.4,
+        "units": 3822.62,
+        "currentNav": 132.6
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000e",
+        "folioNumber": "FOLIO-9008",
+        "schemeName": "Mirae Asset Emerging Bluechip Fund",
+        "date": "2021-06-15T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 100000,
+        "nav": 92.1,
+        "units": 1085.77,
+        "currentNav": 132.6
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c000f",
+        "folioNumber": "FOLIO-9008",
+        "schemeName": "Mirae Asset Emerging Bluechip Fund",
+        "date": "2023-09-01T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 200000,
+        "nav": 115.8,
+        "units": 1727.11,
+        "currentNav": 132.6
+      }
+    ]
+  },
+  {
+    "name": "Arun Kumar",
+    "panNumber": "JVCDE6666P",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0010",
+        "folioNumber": "FOLIO-9009",
+        "schemeName": "DSP Midcap Fund",
+        "date": "2023-03-20T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 85000,
+        "nav": 78.9,
+        "units": 1077.31,
+        "currentNav": 85.2
+      }
+    ]
+  },
+  {
+    "name": "Sunita Rao",
+    "panNumber": "HVCDE7777Q",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0011",
+        "folioNumber": "FOLIO-9010",
+        "schemeName": "Tata Digital India Fund",
+        "date": "2021-09-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 400000,
+        "nav": 35.6,
+        "units": 11235.95,
+        "currentNav": 32.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0012",
+        "folioNumber": "FOLIO-9010",
+        "schemeName": "Tata Digital India Fund",
+        "date": "2023-01-10T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 150000,
+        "nav": 28.4,
+        "units": 5281.69,
+        "currentNav": 32.5
+      }
+    ]
+  },
+  {
+    "name": "Manish Malhotra",
+    "panNumber": "GVCDE8888R",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0013",
+        "folioNumber": "FOLIO-9011",
+        "schemeName": "SBI Focused Equity Fund",
+        "date": "2022-08-18T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 600000,
+        "nav": 215.5,
+        "units": 2784.22,
+        "currentNav": 270.1
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0014",
+        "folioNumber": "FOLIO-9011",
+        "schemeName": "SBI Focused Equity Fund",
+        "date": "2024-03-01T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 200000,
+        "nav": 255.8,
+        "units": 781.86,
+        "currentNav": 270.1
+      }
+    ]
+  },
+  {
+    "name": "Anjali Gupta",
+    "panNumber": "FVCDE9999S",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0015",
+        "folioNumber": "FOLIO-9012",
+        "schemeName": "Axis Small Cap Fund",
+        "date": "2023-10-12T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 350000,
+        "nav": 72.4,
+        "units": 4834.25,
+        "currentNav": 81.9
+      }
+    ]
+  },
+  {
+    "name": "Sanjay Dutt",
+    "panNumber": "DVCDE0000T",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0016",
+        "folioNumber": "FOLIO-9013",
+        "schemeName": "HDFC Small Cap Fund",
+        "date": "2020-05-25T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 150000,
+        "nav": 42.8,
+        "units": 3504.67,
+        "currentNav": 105.4
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0017",
+        "folioNumber": "FOLIO-9013",
+        "schemeName": "HDFC Small Cap Fund",
+        "date": "2021-12-15T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 100000,
+        "nav": 68.9,
+        "units": 1451.37,
+        "currentNav": 105.4
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0018",
+        "folioNumber": "FOLIO-9013",
+        "schemeName": "HDFC Small Cap Fund",
+        "date": "2023-04-10T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 120000,
+        "nav": 88.2,
+        "units": 1360.54,
+        "currentNav": 105.4
+      }
+    ]
+  },
+  {
+    "name": "Priya Rajan",
+    "panNumber": "SGCDE1234U",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0019",
+        "folioNumber": "FOLIO-9014",
+        "schemeName": "ICICI Prudential Bluechip Fund",
+        "date": "2022-11-20T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 800000,
+        "nav": 65.1,
+        "units": 12288.78,
+        "currentNav": 78.3
+      }
+    ]
+  },
+  {
+    "name": "Rajesh Khanna",
+    "panNumber": "RHCDE5678V",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001a",
+        "folioNumber": "FOLIO-9015",
+        "schemeName": "Kotak Emerging Equity Fund",
+        "date": "2021-04-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 450000,
+        "nav": 58.6,
+        "units": 7679.18,
+        "currentNav": 95.6
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001b",
+        "folioNumber": "FOLIO-9015",
+        "schemeName": "Kotak Emerging Equity Fund",
+        "date": "2023-07-28T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 250000,
+        "nav": 81.3,
+        "units": 3075.03,
+        "currentNav": 95.6
+      }
+    ]
+  },
+  {
+    "name": "Nitin Bajaj",
+    "panNumber": "ABCDE1122A",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001c",
+        "folioNumber": "FOLIO-9016",
+        "schemeName": "Parag Parikh Flexi Cap Fund",
+        "date": "2021-11-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 500000,
+        "nav": 45.1,
+        "units": 11086.47,
+        "currentNav": 62.4
+      }
+    ]
+  },
+  {
+    "name": "Deepa Iyer",
+    "panNumber": "BCDEF2233B",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001d",
+        "folioNumber": "FOLIO-9017",
+        "schemeName": "SBI Small Cap Fund",
+        "date": "2022-01-20T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 200000,
+        "nav": 102.5,
+        "units": 1951.21,
+        "currentNav": 135.2
+      }
+    ]
+  },
+  {
+    "name": "Karan Wahi",
+    "panNumber": "CDEFG3344C",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001e",
+        "folioNumber": "FOLIO-9018",
+        "schemeName": "Canara Robeco Bluechip Equity Fund",
+        "date": "2020-09-15T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 300000,
+        "nav": 38.2,
+        "units": 7853.4,
+        "currentNav": 55.8
+      }
+    ]
+  },
+  {
+    "name": "Aditi Rao",
+    "panNumber": "DEFGH4455D",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c001f",
+        "folioNumber": "FOLIO-9019",
+        "schemeName": "Quant Active Fund",
+        "date": "2023-08-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 400000,
+        "nav": 450.2,
+        "units": 888.49,
+        "currentNav": 510.6
+      }
+    ]
+  },
+  {
+    "name": "Gaurav Singh",
+    "panNumber": "EFGHI5566E",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0020",
+        "folioNumber": "FOLIO-9020",
+        "schemeName": "Nippon India Large Cap Fund",
+        "date": "2024-04-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 150000,
+        "nav": 65.8,
+        "units": 2279.63,
+        "currentNav": 68.2
+      }
+    ]
+  },
+  {
+    "name": "Rakesh Desai",
+    "panNumber": "FGHIJ6677F",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0021",
+        "folioNumber": "FOLIO-9021",
+        "schemeName": "HDFC Flexi Cap Fund",
+        "date": "2021-03-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 100000,
+        "nav": 800.0,
+        "units": 125.0,
+        "currentNav": 1200.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0022",
+        "folioNumber": "FOLIO-9022",
+        "schemeName": "ICICI Prudential Technology Fund",
+        "date": "2022-06-15T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 50000,
+        "nav": 140.5,
+        "units": 355.87,
+        "currentNav": 180.2
+      }
+    ]
+  },
+  {
+    "name": "Meera Reddy",
+    "panNumber": "GHIJK7788G",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0023",
+        "folioNumber": "FOLIO-9023",
+        "schemeName": "Axis Bluechip Fund",
+        "date": "2020-02-20T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 200000,
+        "nav": 35.0,
+        "units": 5714.28,
+        "currentNav": 48.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0024",
+        "folioNumber": "FOLIO-9023",
+        "schemeName": "Axis Bluechip Fund",
+        "date": "2023-01-10T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 50000,
+        "nav": 42.0,
+        "units": 1190.47,
+        "currentNav": 48.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0025",
+        "folioNumber": "FOLIO-9024",
+        "schemeName": "SBI Magnum Midcap Fund",
+        "date": "2021-11-05T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 150000,
+        "nav": 125.4,
+        "units": 1196.17,
+        "currentNav": 190.6
+      }
+    ]
+  },
+  {
+    "name": "Tarun Gill",
+    "panNumber": "HIJKL8899H",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0026",
+        "folioNumber": "FOLIO-9025",
+        "schemeName": "Nippon India Pharma Fund",
+        "date": "2022-09-12T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 100000,
+        "nav": 250.0,
+        "units": 400.0,
+        "currentNav": 310.2
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0027",
+        "folioNumber": "FOLIO-9026",
+        "schemeName": "DSP Quant Fund",
+        "date": "2023-04-18T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 300000,
+        "nav": 45.6,
+        "units": 6578.94,
+        "currentNav": 58.9
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0028",
+        "folioNumber": "FOLIO-9027",
+        "schemeName": "Kotak Gold Fund",
+        "date": "2024-01-20T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 50000,
+        "nav": 22.1,
+        "units": 2262.44,
+        "currentNav": 25.4
+      }
+    ]
+  },
+  {
+    "name": "Simran Kaur",
+    "panNumber": "IJKLM9900I",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c0029",
+        "folioNumber": "FOLIO-9028",
+        "schemeName": "Parag Parikh Conservative Hybrid Fund",
+        "date": "2023-02-14T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 500000,
+        "nav": 15.2,
+        "units": 32894.73,
+        "currentNav": 18.5
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c002a",
+        "folioNumber": "FOLIO-9029",
+        "schemeName": "Quant Small Cap Fund",
+        "date": "2023-07-22T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 250000,
+        "nav": 155.5,
+        "units": 1607.71,
+        "currentNav": 210.8
+      }
+    ]
+  },
+  {
+    "name": "Kunal Nayyar",
+    "panNumber": "JKLMN0011J",
+    "transactions": [
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c002b",
+        "folioNumber": "FOLIO-9030",
+        "schemeName": "Tata Balanced Advantage Fund",
+        "date": "2021-08-30T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 400000,
+        "nav": 28.4,
+        "units": 14084.5,
+        "currentNav": 36.2
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c002c",
+        "folioNumber": "FOLIO-9030",
+        "schemeName": "Tata Balanced Advantage Fund",
+        "date": "2024-05-15T00:00:00.000Z",
+        "type": "REDEMPTION",
+        "amount": 100000,
+        "nav": 35.8,
+        "units": 2793.29,
+        "currentNav": 36.2
+      },
+      {
+        "_id": "651a2b3c4d5e6f7a8b9c002d",
+        "folioNumber": "FOLIO-9031",
+        "schemeName": "UTI Flexi Cap Fund",
+        "date": "2022-12-01T00:00:00.000Z",
+        "type": "PURCHASE",
+        "amount": 300000,
+        "nav": 210.5,
+        "units": 1425.17,
+        "currentNav": 260.4
+      }
+    ]
+  }
+]
